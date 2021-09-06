@@ -1,0 +1,12 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="post-answer">
+        <h2>Post Your Answer Here</h2>
+        <form class="site-form" action="{% url 'dashboard:post_answer' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Post Answer">
+        </form>
+    </div>
+{% endblock %}

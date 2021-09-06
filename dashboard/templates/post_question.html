@@ -1,0 +1,13 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="post-question">
+        <h2>Post Your Question Here</h2>
+        <form class="site-form" action="{% url 'dashboard:create_ques' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Post Question">
+        </form>
+    </div>
+    <!-- <script src="/static/slugify.js"></script> -->
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>StackClone</title>
+    </head>
+    <body>
+        <header class="wrapper">
+            <h1><a href="{% url 'home' %}">Stackclone</a></h1>
+            <nav>
+                <ul>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <form class="logout-link" action="{% url 'dashboard:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                    <li><a href="{% url 'dashboard:create_ques' %}" class="highlight">Post Question</a></li>
+                    {% else %}
+                    <li><a href="{% url 'dashboard:login' %}">Login</a></li>
+                    <li><a href="{% url 'dashboard:signup' %}">Signup</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        <div class="wrapper">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

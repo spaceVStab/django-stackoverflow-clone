@@ -1,0 +1,31 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="question-detail">
+    <div class="question">
+        <h2>{{ question.ques_title }}</h2>
+        <h3>Written by {{ question.posted_by.username }}</h3>
+        <h6>Posted at {{ question.posted_at }}</h6>
+        <p>{{ question.ques_text }}</p>
+    </div>
+    <div class="post-answer">
+        <h3>Post Your Answer here</h3>
+        <form class="site-form" action="{% url 'dashboard:post_answer' id=question.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Post Answer">
+        </form>
+    </div>
+    <div class="answers">
+        {% for answer in answers %}
+            <div class="answer">
+                 <p>{{ answer.ans_text }}</p>
+                 <p>Answered by {{ answer.answered_by.username }} at {{ answer.answered_at }}</p>
+                 <p></p>
+                <!-- posted by -->
+                <!-- posted at -->
+            </div>
+        {% endfor %}
+    </div>        
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base_layout.html' %}
+
+{% block content%}
+    <h1>Questions List</h1>
+    <div class="questions">
+    {% for question in questions %}
+        <div class="question">
+            <h2><a href="{% url 'dashboard:detail' id=question.id %}">{{ question.ques_title }}</a></h2>
+            <p>{{ question.ques_text }}</p>
+            <p>{{ question.posted_at }}</p>
+            <p>Posted By {{ question.posted_by.username }}</p>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
